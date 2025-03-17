@@ -3,21 +3,46 @@ import { Book } from './types/Book';
 
 function BookList() {
   const [books, setBooks] = useState<Book[]>([]);
+  const [sortedBooks, setSortedBooks] = useState<Book[]>([]);
+  const [pageSize, setPageSize] = useState<number>(10);
+  const [pageNum, setPageNum] = useState<number>(1);
+  const [totalItems, setTotalItems] = useState<number>(0);
+  const [totalPages, setTotalPages] = useState<number>(0);
+  const [sortAscending, setSortAscending] = useState<boolean>(true);
 
   useEffect(() => {
     const fetchBooks = async () => {
-      const response = await fetch('https://localhost:5000/api/Book/AllBooks');
+      const response = await fetch(
+        `https://localhost:5000/Book?pageSize=${pageSize}&pageNum=${pageNum}`
+      );
       const data = await response.json();
-      setBooks(data);
+      setBooks(data.books);
+      setTotalItems(data.totalNumRecords);
+      setTotalPages(Math.ceil(totalItems / pageSize));
     };
     fetchBooks();
-  }, []);
+  }, [pageSize, pageNum, totalItems]);
+
+  useEffect(() => {
+    const sorted = [...books].sort((a, b) => {
+      if (a.title < b.title) return sortAscending ? -1 : 1;
+      if (a.title > b.title) return sortAscending ? 1 : -1;
+      return 0;
+    });
+    setSortedBooks(sorted);
+  }, [books, sortAscending]);
 
   return (
     <>
       <h1>Books</h1>
       <br />
-      {books.map((b) => (
+      <button onClick={() => setSortAscending(!sortAscending)}>
+        Sort by Title {sortAscending ? '↑' : '↓'}
+      </button>
+      <br />
+      <br />
+
+      {sortedBooks.map((b) => (
         <div id="bookCard" className="card" key={b.bookId}>
           <h3 className="card-title">{b.title}</h3>
           <div className="card-body">
@@ -38,12 +63,47 @@ function BookList() {
                 <strong>Number of Pages:</strong> {b.pageCount}
               </li>
               <li>
-                <strong>Price:</strong> {b.price}
+                <strong>Price:</strong> ${b.price}
               </li>
             </ul>
           </div>
         </div>
       ))}
+
+      <button disabled={pageNum === 1} onClick={() => setPageNum(pageNum - 1)}>
+        Previous
+      </button>
+
+      {[...Array(totalPages)].map((_, i) => (
+        <button
+          key={i + 1}
+          onClick={() => setPageNum(i + 1)}
+          disabled={pageNum === i + 1}
+        >
+          {i + 1}
+        </button>
+      ))}
+
+      <button
+        disabled={pageNum === totalPages}
+        onClick={() => setPageNum(pageNum + 1)}
+      >
+        Next
+      </button>
+
+      <br />
+      <label>How Many results per page?</label>
+      <select
+        value={pageSize}
+        onChange={(p) => {
+          setPageSize(Number(p.target.value));
+          setPageNum(1);
+        }}
+      >
+        <option value="5">5</option>
+        <option value="10">10</option>
+        <option value="20">20</option>
+      </select>
     </>
   );
 }
