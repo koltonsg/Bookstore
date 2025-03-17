@@ -4,7 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace Bookstore.API.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("[controller]")]
     [ApiController]
     public class BookController : ControllerBase
     {
@@ -12,13 +12,22 @@ namespace Bookstore.API.Controllers
 
         public BookController(BookDbContext context)=> _BookContext = context;
 
-        [HttpGet("AllBooks")]
-        public IEnumerable<Book> Get()
+        [HttpGet]
+        public IActionResult Get(int pageSize = 10, int pageNum = 1)
         {
             var something = _BookContext.Books
-            .Take(5)
+            .Skip((pageNum -1) * pageSize)
+            .Take(pageSize)
             .ToList();
-            return something;
+
+            var totalNumRecords = _BookContext.Books.Count();
+
+            var someObject = new
+            {
+                Books = something,
+                TotalNumRecords = totalNumRecords
+            };
+            return Ok(someObject);
         }
 
 

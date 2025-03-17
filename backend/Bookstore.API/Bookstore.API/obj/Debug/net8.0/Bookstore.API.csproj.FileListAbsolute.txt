@@ -142,6 +142,7 @@ C:\Users\kolto\source\repos\BookstoreProject\backend\Bookstore.API\Bookstore.API
 C:\Users\kolto\source\repos\BookstoreProject\backend\Bookstore.API\Bookstore.API\obj\Debug\net8.0\Bookstore.API.csproj.CoreCompileInputs.cache
 C:\Users\kolto\source\repos\BookstoreProject\backend\Bookstore.API\Bookstore.API\obj\Debug\net8.0\Bookstore.API.MvcApplicationPartsAssemblyInfo.cs
 C:\Users\kolto\source\repos\BookstoreProject\backend\Bookstore.API\Bookstore.API\obj\Debug\net8.0\Bookstore.API.MvcApplicationPartsAssemblyInfo.cache
+C:\Users\kolto\source\repos\BookstoreProject\backend\Bookstore.API\Bookstore.API\obj\Debug\net8.0\Bookstore.API.sourcelink.json
 C:\Users\kolto\source\repos\BookstoreProject\backend\Bookstore.API\Bookstore.API\obj\Debug\net8.0\scopedcss\bundle\Bookstore.API.styles.css
 C:\Users\kolto\source\repos\BookstoreProject\backend\Bookstore.API\Bookstore.API\obj\Debug\net8.0\staticwebassets.build.json
 C:\Users\kolto\source\repos\BookstoreProject\backend\Bookstore.API\Bookstore.API\obj\Debug\net8.0\staticwebassets.development.json
