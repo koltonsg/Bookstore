@@ -2,6 +2,8 @@
 
 namespace Bookstore.API.Data
 {
+
+    // fields from the book table to make our table here
     public class Book
     {
         [Key]
