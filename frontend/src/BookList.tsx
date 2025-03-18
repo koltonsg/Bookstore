@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { Book } from './types/Book';
 
 function BookList() {
+  // usestates for all the variables we will use
   const [books, setBooks] = useState<Book[]>([]);
   const [sortedBooks, setSortedBooks] = useState<Book[]>([]);
   const [pageSize, setPageSize] = useState<number>(10);
@@ -10,6 +11,7 @@ function BookList() {
   const [totalPages, setTotalPages] = useState<number>(0);
   const [sortAscending, setSortAscending] = useState<boolean>(true);
 
+  // this use effect sets the url parameters and json 
   useEffect(() => {
     const fetchBooks = async () => {
       const response = await fetch(
@@ -23,6 +25,7 @@ function BookList() {
     fetchBooks();
   }, [pageSize, pageNum, totalItems]);
 
+  // this use effect is used to sort the books in the list
   useEffect(() => {
     const sorted = [...books].sort((a, b) => {
       if (a.title < b.title) return sortAscending ? -1 : 1;
@@ -36,12 +39,14 @@ function BookList() {
     <>
       <h1>Books</h1>
       <br />
+      {/* button used to sort the titles */}
       <button onClick={() => setSortAscending(!sortAscending)}>
         Sort by Title {sortAscending ? '↑' : '↓'}
       </button>
       <br />
       <br />
 
+      {/* cards for each book */}
       {sortedBooks.map((b) => (
         <div id="bookCard" className="card" key={b.bookId}>
           <h3 className="card-title">{b.title}</h3>
@@ -70,10 +75,12 @@ function BookList() {
         </div>
       ))}
 
+{/* previous button to go to the previous page */}
       <button disabled={pageNum === 1} onClick={() => setPageNum(pageNum - 1)}>
         Previous
       </button>
 
+{/* this makes it so that the number of page buttons are dynamic */}
       {[...Array(totalPages)].map((_, i) => (
         <button
           key={i + 1}
@@ -84,6 +91,7 @@ function BookList() {
         </button>
       ))}
 
+{/* next button to go to the next page */}
       <button
         disabled={pageNum === totalPages}
         onClick={() => setPageNum(pageNum + 1)}
@@ -92,6 +100,8 @@ function BookList() {
       </button>
 
       <br />
+
+      {/* Where the user can decide how many records per page to display */}
       <label>How Many results per page?</label>
       <select
         value={pageSize}

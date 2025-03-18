@@ -15,6 +15,7 @@ namespace Bookstore.API.Controllers
         [HttpGet]
         public IActionResult Get(int pageSize = 10, int pageNum = 1)
         {
+            // split up the records based on the page size and page number
             var something = _BookContext.Books
             .Skip((pageNum -1) * pageSize)
             .Take(pageSize)

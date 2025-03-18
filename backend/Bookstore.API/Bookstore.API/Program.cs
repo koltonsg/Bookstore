@@ -10,6 +10,7 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
+// Connect to the database using the connection string
 builder.Services.AddDbContext<BookDbContext>(options =>
 {
     options.UseSqlite(builder.Configuration.GetConnectionString("BookConnection"));
@@ -26,6 +27,7 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
+// implement the ad cors allowing connections from port 7000
 app.UseCors(options => options.WithOrigins("http://localhost:7000"));
 
 app.UseHttpsRedirection();
