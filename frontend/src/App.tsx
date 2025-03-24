@@ -1,10 +1,31 @@
+import { useState } from 'react';
 import './App.css';
 import BookList from './BookList';
+import WelcomeBand from './WelcomeBand';
+import CategoryFilter from './CategoryFilter';
 
 function App() {
+  const [selectedCategories, setSelectedCategories] = useState<string[]>([]);
+
+
   return (
     <>
-      <BookList />
+      <div className="container mt-4">
+        <div className="row bg-primary text-white">
+          <WelcomeBand />
+        </div>
+        <div className="row">
+          <div className="col-md-3">
+            <CategoryFilter
+              selectedCategories={selectedCategories}
+              setSelectedCategories={setSelectedCategories}
+            />
+          </div>
+          <div className="col-md-9">
+            <BookList selectedCategories={selectedCategories} />
+          </div>
+        </div>
+      </div>
     </>
   );
 }

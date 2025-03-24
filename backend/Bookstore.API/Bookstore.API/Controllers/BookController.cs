@@ -13,24 +13,41 @@ namespace Bookstore.API.Controllers
         public BookController(BookDbContext context)=> _BookContext = context;
 
         [HttpGet]
-        public IActionResult Get(int pageSize = 10, int pageNum = 1)
+        public IActionResult Get(int pageSize = 10, int pageNum = 1, [FromQuery] List<string>? bookCategories = null)
         {
+
+            var query = _BookContext.Books.AsQueryable();
+            if (bookCategories != null && bookCategories.Any())
+            {
+                query = query.Where(p => bookCategories.Contains(p.Category));
+            }
+            var totalItems = query.Count();
+
             // split up the records based on the page size and page number
-            var something = _BookContext.Books
+            var something = query
             .Skip((pageNum -1) * pageSize)
             .Take(pageSize)
             .ToList();
 
-            var totalNumRecords = _BookContext.Books.Count();
+
+            //var totalNumRecords = _BookContext.Books.Count();
 
             var someObject = new
             {
                 Books = something,
-                TotalNumRecords = totalNumRecords
+                TotalNumRecords = totalItems
             };
             return Ok(someObject);
         }
 
-
+        [HttpGet("GetBookCategories")]
+        public IActionResult GetBookCategories()
+        {
+            var BookCategories = _BookContext.Books
+                .Select(p => p.Category)
+                .Distinct()
+                .ToList();
+            return Ok(BookCategories);
+        }
     }
 }
