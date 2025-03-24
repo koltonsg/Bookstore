@@ -3,10 +3,6 @@
   "WorkspaceRootPath": "C:\\Users\\kolto\\source\\repos\\BookstoreProject\\backend\\Bookstore.API\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{D0D0704D-4C58-4260-96E0-B67EC8C2A7F5}|Bookstore.API\\Bookstore.API.csproj|c:\\users\\kolto\\source\\repos\\bookstoreproject\\backend\\bookstore.api\\bookstore.api\\properties\\launchsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
-      "RelativeMoniker": "D:0:0:{D0D0704D-4C58-4260-96E0-B67EC8C2A7F5}|Bookstore.API\\Bookstore.API.csproj|solutionrelative:bookstore.api\\properties\\launchsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{D0D0704D-4C58-4260-96E0-B67EC8C2A7F5}|Bookstore.API\\Bookstore.API.csproj|c:\\users\\kolto\\source\\repos\\bookstoreproject\\backend\\bookstore.api\\bookstore.api\\controllers\\bookcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{D0D0704D-4C58-4260-96E0-B67EC8C2A7F5}|Bookstore.API\\Bookstore.API.csproj|solutionrelative:bookstore.api\\controllers\\bookcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
@@ -17,6 +13,10 @@
     {
       "AbsoluteMoniker": "D:0:0:{D0D0704D-4C58-4260-96E0-B67EC8C2A7F5}|Bookstore.API\\Bookstore.API.csproj|c:\\users\\kolto\\source\\repos\\bookstoreproject\\backend\\bookstore.api\\bookstore.api\\data\\bookdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{D0D0704D-4C58-4260-96E0-B67EC8C2A7F5}|Bookstore.API\\Bookstore.API.csproj|solutionrelative:bookstore.api\\data\\bookdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D0D0704D-4C58-4260-96E0-B67EC8C2A7F5}|Bookstore.API\\Bookstore.API.csproj|c:\\users\\kolto\\source\\repos\\bookstoreproject\\backend\\bookstore.api\\bookstore.api\\properties\\launchsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{D0D0704D-4C58-4260-96E0-B67EC8C2A7F5}|Bookstore.API\\Bookstore.API.csproj|solutionrelative:bookstore.api\\properties\\launchsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{D0D0704D-4C58-4260-96E0-B67EC8C2A7F5}|Bookstore.API\\Bookstore.API.csproj|c:\\users\\kolto\\source\\repos\\bookstoreproject\\backend\\bookstore.api\\bookstore.api\\data\\book.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -30,7 +30,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 2,
+          "SelectedChildIndex": 4,
           "Children": [
             {
               "$type": "Bookmark",
@@ -42,33 +42,20 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "launchSettings.json",
-              "DocumentMoniker": "C:\\Users\\kolto\\source\\repos\\BookstoreProject\\backend\\Bookstore.API\\Bookstore.API\\Properties\\launchSettings.json",
-              "RelativeDocumentMoniker": "Bookstore.API\\Properties\\launchSettings.json",
-              "ToolTip": "C:\\Users\\kolto\\source\\repos\\BookstoreProject\\backend\\Bookstore.API\\Bookstore.API\\Properties\\launchSettings.json",
-              "RelativeToolTip": "Bookstore.API\\Properties\\launchSettings.json",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABQAAAAGAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
-              "WhenOpened": "2025-03-17T18:57:56.793Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 1,
               "Title": "Program.cs",
               "DocumentMoniker": "C:\\Users\\kolto\\source\\repos\\BookstoreProject\\backend\\Bookstore.API\\Bookstore.API\\Program.cs",
               "RelativeDocumentMoniker": "Bookstore.API\\Program.cs",
               "ToolTip": "C:\\Users\\kolto\\source\\repos\\BookstoreProject\\backend\\Bookstore.API\\Bookstore.API\\Program.cs",
               "RelativeToolTip": "Bookstore.API\\Program.cs",
-              "ViewState": "AgIAAAYAAAAAAAAAAAAAAB0AAAA8AAAAAAAAAA==",
+              "ViewState": "AgIAAB4AAAAAAAAAAAAAACcAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-03-17T18:03:27.258Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 2,
               "Title": "BookDbContext.cs",
               "DocumentMoniker": "C:\\Users\\kolto\\source\\repos\\BookstoreProject\\backend\\Bookstore.API\\Bookstore.API\\Data\\BookDbContext.cs",
               "RelativeDocumentMoniker": "Bookstore.API\\Data\\BookDbContext.cs",
@@ -81,28 +68,41 @@
             },
             {
               "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "BookController.cs",
+              "DocumentMoniker": "C:\\Users\\kolto\\source\\repos\\BookstoreProject\\backend\\Bookstore.API\\Bookstore.API\\Controllers\\BookController.cs",
+              "RelativeDocumentMoniker": "Bookstore.API\\Controllers\\BookController.cs",
+              "ToolTip": "C:\\Users\\kolto\\source\\repos\\BookstoreProject\\backend\\Bookstore.API\\Bookstore.API\\Controllers\\BookController.cs",
+              "RelativeToolTip": "Bookstore.API\\Controllers\\BookController.cs",
+              "ViewState": "AgIAAAgAAAAAAAAAAAAxwB4AAAAiAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-17T17:52:11.356Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "launchSettings.json",
+              "DocumentMoniker": "C:\\Users\\kolto\\source\\repos\\BookstoreProject\\backend\\Bookstore.API\\Bookstore.API\\Properties\\launchSettings.json",
+              "RelativeDocumentMoniker": "Bookstore.API\\Properties\\launchSettings.json",
+              "ToolTip": "C:\\Users\\kolto\\source\\repos\\BookstoreProject\\backend\\Bookstore.API\\Bookstore.API\\Properties\\launchSettings.json",
+              "RelativeToolTip": "Bookstore.API\\Properties\\launchSettings.json",
+              "ViewState": "AgIAAAkAAAAAAAAAAAAAABAAAABFAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2025-03-17T18:57:56.793Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
               "DocumentIndex": 4,
               "Title": "Book.cs",
               "DocumentMoniker": "C:\\Users\\kolto\\source\\repos\\BookstoreProject\\backend\\Bookstore.API\\Bookstore.API\\Data\\Book.cs",
               "RelativeDocumentMoniker": "Bookstore.API\\Data\\Book.cs",
               "ToolTip": "C:\\Users\\kolto\\source\\repos\\BookstoreProject\\backend\\Bookstore.API\\Bookstore.API\\Data\\Book.cs",
               "RelativeToolTip": "Bookstore.API\\Data\\Book.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAUAAAA4AAAAAAAAAA==",
+              "ViewState": "AgIAAAgAAAAAAAAAAAAAwAUAAAA4AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-03-17T17:52:52.818Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "BookController.cs",
-              "DocumentMoniker": "C:\\Users\\kolto\\source\\repos\\BookstoreProject\\backend\\Bookstore.API\\Bookstore.API\\Controllers\\BookController.cs",
-              "RelativeDocumentMoniker": "Bookstore.API\\Controllers\\BookController.cs",
-              "ToolTip": "C:\\Users\\kolto\\source\\repos\\BookstoreProject\\backend\\Bookstore.API\\Bookstore.API\\Controllers\\BookController.cs",
-              "RelativeToolTip": "Bookstore.API\\Controllers\\BookController.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABoAAAANAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-17T17:52:11.356Z",
               "EditorCaption": ""
             }
           ]
