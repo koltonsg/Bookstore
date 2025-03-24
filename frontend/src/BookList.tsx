@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { Book } from './types/Book';
 
-function BookList() {
+function BookList({ selectedCategories }: { selectedCategories: string[] }) {
   // usestates for all the variables we will use
   const [books, setBooks] = useState<Book[]>([]);
   const [sortedBooks, setSortedBooks] = useState<Book[]>([]);
@@ -11,11 +11,14 @@ function BookList() {
   const [totalPages, setTotalPages] = useState<number>(0);
   const [sortAscending, setSortAscending] = useState<boolean>(true);
 
-  // this use effect sets the url parameters and json 
+  // this use effect sets the url parameters and json
   useEffect(() => {
     const fetchBooks = async () => {
+      const categoryParams = selectedCategories
+        .map((cat) => `bookCategories=${encodeURIComponent(cat)}`)
+        .join('&');
       const response = await fetch(
-        `https://localhost:5000/Book?pageSize=${pageSize}&pageNum=${pageNum}`
+        `https://localhost:4000/Book?pageSize=${pageSize}&pageNum=${pageNum}${selectedCategories.length ? `&${categoryParams}` : ''}`
       );
       const data = await response.json();
       setBooks(data.books);
@@ -23,7 +26,7 @@ function BookList() {
       setTotalPages(Math.ceil(totalItems / pageSize));
     };
     fetchBooks();
-  }, [pageSize, pageNum, totalItems]);
+  }, [pageSize, pageNum, totalItems, selectedCategories]);
 
   // this use effect is used to sort the books in the list
   useEffect(() => {
@@ -37,8 +40,6 @@ function BookList() {
 
   return (
     <>
-      <h1>Books</h1>
-      <br />
       {/* button used to sort the titles */}
       <button onClick={() => setSortAscending(!sortAscending)}>
         Sort by Title {sortAscending ? '↑' : '↓'}
@@ -75,12 +76,12 @@ function BookList() {
         </div>
       ))}
 
-{/* previous button to go to the previous page */}
+      {/* previous button to go to the previous page */}
       <button disabled={pageNum === 1} onClick={() => setPageNum(pageNum - 1)}>
         Previous
       </button>
 
-{/* this makes it so that the number of page buttons are dynamic */}
+      {/* this makes it so that the number of page buttons are dynamic */}
       {[...Array(totalPages)].map((_, i) => (
         <button
           key={i + 1}
@@ -91,7 +92,7 @@ function BookList() {
         </button>
       ))}
 
-{/* next button to go to the next page */}
+      {/* next button to go to the next page */}
       <button
         disabled={pageNum === totalPages}
         onClick={() => setPageNum(pageNum + 1)}
