@@ -5,7 +5,6 @@ import { CartItem } from '../types/CartItem';
 function CartPage() {
   const navigate = useNavigate();
   const { cart, removeFromCart } = useCart();
-  console.log(cart);
   return (
     <div>
       <h2>Your cart</h2>
@@ -17,12 +16,7 @@ function CartPage() {
             {cart.map((item: CartItem) => (
               <li key={item.cartBookId}>
                 {item.title}: ${item.price.toFixed(2)}
-                <button
-                  onClick={() => {
-                    console.log(item.cartBookId);
-                    removeFromCart(item.cartBookId);
-                  }}
-                >
+                <button onClick={() => removeFromCart(item.cartBookId)}>
                   Remove
                 </button>
               </li>

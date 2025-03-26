@@ -2,7 +2,7 @@ import './App.css';
 import { CartProvider } from './context/CartContext';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import BooksPage from './pages/BooksPage';
-import AddToCartPage from './pages/addToCartPage';
+import AddToCartPage from './pages/AddToCartPage';
 import CartPage from './pages/CartPage';
 
 function App() {
@@ -15,7 +15,8 @@ function App() {
             <Route path="/books" element={<BooksPage />} />
             <Route path="/cart" element={<CartPage />} />
             <Route
-              path="/cart/:title/:cartBookId/:price"
+              // check to see if renaming this fixed things
+              path="/addToCart/:title/:cartBookId/:price"
               element={<AddToCartPage />}
             />
           </Routes>
