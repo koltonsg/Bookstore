@@ -46,8 +46,7 @@
               "RelativeToolTip": "Bookstore.API\\Program.cs",
               "ViewState": "AgIAAB4AAAAAAAAAAAAAACcAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-17T18:03:27.258Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-03-17T18:03:27.258Z"
             },
             {
               "$type": "Document",
@@ -59,8 +58,7 @@
               "RelativeToolTip": "Bookstore.API\\Data\\BookDbContext.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAAuAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-17T17:53:14.654Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-03-17T17:53:14.654Z"
             },
             {
               "$type": "Document",
@@ -85,8 +83,7 @@
               "RelativeToolTip": "Bookstore.API\\Data\\Book.cs",
               "ViewState": "AgIAAAgAAAAAAAAAAAAAwA8AAAAeAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-17T17:52:52.818Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-03-17T17:52:52.818Z"
             }
           ]
         }

@@ -1,7 +1,9 @@
 import { useEffect, useState } from 'react';
-import { Book } from './types/Book';
+import { Book } from '../types/Book';
+import { useNavigate } from 'react-router-dom';
 
 function BookList({ selectedCategories }: { selectedCategories: string[] }) {
+  const navigate = useNavigate();
   // usestates for all the variables we will use
   const [books, setBooks] = useState<Book[]>([]);
   const [sortedBooks, setSortedBooks] = useState<Book[]>([]);
@@ -72,6 +74,16 @@ function BookList({ selectedCategories }: { selectedCategories: string[] }) {
                 <strong>Price:</strong> ${b.price}
               </li>
             </ul>
+            <button
+              className="btn btn-success"
+              onClick={() =>
+                navigate(
+                  `/cart/${encodeURIComponent(b.title)}/${b.bookId}?${b.price}`
+                )
+              }
+            >
+              Add to Cart
+            </button>
           </div>
         </div>
       ))}
