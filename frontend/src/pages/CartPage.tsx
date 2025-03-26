@@ -14,9 +14,10 @@ function CartPage() {
         ) : (
           <ul>
             {cart.map((item: CartItem) => (
-              <li key={item.cartBookId}>
-                {item.title}: ${item.price.toFixed(2)}
-                <button onClick={() => removeFromCart(item.cartBookId)}>
+              <li key={item.bookId}>
+                {item.title}: ${item.subtotal.toFixed(2)} ({item.quantity} x $
+                {item.price.toFixed(2)})
+                <button onClick={() => removeFromCart(item.bookId)}>
                   Remove
                 </button>
               </li>
