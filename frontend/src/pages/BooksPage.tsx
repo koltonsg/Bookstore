@@ -10,6 +10,7 @@ function BooksPage() {
     <div className="container mt-4">
       <CartSummary />
       <WelcomeBand />
+      {/* uses the grid system to lay out the page */}
       <div className="row">
         <div className="col-md-3">
           <CategoryFilter

@@ -4,8 +4,15 @@ import { useCart } from '../context/CartContext';
 const CartSummary = () => {
   const navigate = useNavigate();
   const { cart } = useCart();
-  const subtotal = cart.reduce((sum, item) => sum + item.price, 0);
+
+  // Calculate the total price of the cart
+  const total = cart.reduce((sum, item) => sum + item.subtotal, 0);
+
+  // Calculate the total number of items in the cart
+  const totalQuantity = cart.reduce((sum, item) => sum + item.quantity, 0);
+
   return (
+    // cart summary button to show the total and take you to the cart page
     <div
       style={{
         position: 'fixed',
@@ -22,7 +29,21 @@ const CartSummary = () => {
       }}
       onClick={() => navigate('/cart')}
     >
-      🛒 <strong>${subtotal.toFixed(2)}</strong>
+      🛒 <strong>${total.toFixed(2)}</strong>
+      {/* Badge for the number of items */}
+      {totalQuantity > 0 && (
+        <span
+        // BADGES! This is one of the extra bootstrap steps. It shows how many items are in the cart. 
+          className="badge bg-danger ms-2"
+          style={{
+            fontSize: '12px',
+            padding: '5px 8px',
+            borderRadius: '50%',
+          }}
+        >
+          {totalQuantity}
+        </span>
+      )}
     </div>
   );
 };

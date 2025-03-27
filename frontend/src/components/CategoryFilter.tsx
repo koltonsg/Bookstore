@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import './CategoryFilter.css';
 
+// adds the functionality of the checkboxes to filter the books that show up
 function CategoryFilter({
   selectedCategories,
   setSelectedCategories,

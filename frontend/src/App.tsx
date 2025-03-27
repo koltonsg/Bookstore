@@ -8,6 +8,7 @@ import CartPage from './pages/CartPage';
 function App() {
   return (
     <>
+    {/* Paths to navigate through the pages */}
       <CartProvider>
         <Router>
           <Routes>
@@ -15,8 +16,7 @@ function App() {
             <Route path="/books" element={<BooksPage />} />
             <Route path="/cart" element={<CartPage />} />
             <Route
-              // check to see if renaming this fixed things
-              path="/addToCart/:title/:cartBookId/:price"
+              path="/addToCart/:title/:bookId/:price"
               element={<AddToCartPage />}
             />
           </Routes>
