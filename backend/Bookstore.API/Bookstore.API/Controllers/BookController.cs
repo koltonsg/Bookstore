@@ -13,9 +13,9 @@ namespace Bookstore.API.Controllers
         public BookController(BookDbContext context)=> _BookContext = context;
 
         [HttpGet]
+        // these are the default values for the page size and page number, as well as parameters for the book categories
         public IActionResult Get(int pageSize = 10, int pageNum = 1, [FromQuery] List<string>? bookCategories = null)
         {
-
             var query = _BookContext.Books.AsQueryable();
             if (bookCategories != null && bookCategories.Any())
             {
@@ -25,8 +25,19 @@ namespace Bookstore.API.Controllers
 
             // split up the records based on the page size and page number
             var something = query
-            .Skip((pageNum -1) * pageSize)
+            .Skip((pageNum - 1) * pageSize)
             .Take(pageSize)
+            .Select(b => new {
+            b.BookId,
+            b.Title,
+            b.Author,
+            b.Publisher,
+            b.ISBN,
+            b.Classification,
+            b.Category,
+            b.PageCount,
+            b.Price
+            })
             .ToList();
 
 
@@ -40,6 +51,7 @@ namespace Bookstore.API.Controllers
             return Ok(someObject);
         }
 
+        // get the book categories specifically
         [HttpGet("GetBookCategories")]
         public IActionResult GetBookCategories()
         {

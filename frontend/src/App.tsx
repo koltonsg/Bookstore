@@ -8,6 +8,7 @@ import CartPage from './pages/CartPage';
 function App() {
   return (
     <>
+    {/* Paths to navigate through the pages */}
       <CartProvider>
         <Router>
           <Routes>

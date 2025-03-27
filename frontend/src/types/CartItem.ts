@@ -5,3 +5,4 @@ export interface CartItem {
   quantity: number;
   subtotal: number;
 }
+// this defines the attributes of the CartItems
