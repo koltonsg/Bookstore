@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { Book } from '../types/Book';
 import { useNavigate } from 'react-router-dom';
+import { fetchBooks } from '../api/BooksApi';
 
 function BookList({ selectedCategories }: { selectedCategories: string[] }) {
   const navigate = useNavigate();
@@ -12,23 +13,28 @@ function BookList({ selectedCategories }: { selectedCategories: string[] }) {
   const [totalItems, setTotalItems] = useState<number>(0);
   const [totalPages, setTotalPages] = useState<number>(0);
   const [sortAscending, setSortAscending] = useState<boolean>(true);
+  const [error, setError] = useState<string | null>(null);
+  const [loading, setLoading] = useState(true);
 
-  // this use effect sets the url parameters and json
   useEffect(() => {
-    const fetchBooks = async () => {
-      const categoryParams = selectedCategories
-        .map((cat) => `bookCategories=${encodeURIComponent(cat)}`)
-        .join('&');
-      const response = await fetch(
-        `https://localhost:4000/Book?pageSize=${pageSize}&pageNum=${pageNum}${selectedCategories.length ? `&${categoryParams}` : ''}`
-      );
-      const data = await response.json();
-      setBooks(data.books);
-      setTotalItems(data.totalNumRecords);
-      setTotalPages(Math.ceil(totalItems / pageSize));
+    const loadProjects = async () => {
+      try {
+        setLoading(true);
+        const data = await fetchBooks(pageSize, pageNum, selectedCategories);
+
+        setBooks(data.books);
+        setTotalPages(Math.ceil(data.totalNumBooks / pageSize));
+      } catch (error) {
+        setError((error as Error).message);
+      } finally {
+        setLoading(false);
+      }
     };
-    fetchBooks();
-  }, [pageSize, pageNum, totalItems, selectedCategories]);
+    loadProjects();
+  }, [pageSize, pageNum, selectedCategories]);
+
+  if (loading) return <p>Loading Projects...</p>;
+  if (error) return <p className="text-red-500">Error: {error}</p>;
 
   // this use effect is used to sort the books in the list
   useEffect(() => {
