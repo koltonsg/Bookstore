@@ -40,13 +40,10 @@ namespace Bookstore.API.Controllers
             })
             .ToList();
 
-
-            //var totalNumRecords = _BookContext.Books.Count();
-
             var someObject = new
             {
-                Books = something,
-                TotalNumRecords = totalItems
+                books = something,
+                totalNumBooks = totalItems
             };
             return Ok(someObject);
         }

@@ -16,18 +16,15 @@ export const fetchBooks = async (
       .join('&');
 
     const response = await fetch(
-      `https://localhost:4000/Book?pageSize=${pageSize}&pageNum=${pageNum}${selectedCategories.length ? `&${categoryParams}` : ''}`,
-      {
-        credentials: 'include',
-      }
+      `https://localhost:4000/Book?pageSize=${pageSize}&pageNum=${pageNum}${selectedCategories.length ? `&${categoryParams}` : ''}`
     );
 
     if (!response.ok) {
-      throw new Error('Failed to fetch Projects');
+      throw new Error('Failed to fetch Books');
     }
     return await response.json();
   } catch (error) {
-    console.error('error fetching projects:', error);
+    console.error('error fetching books:', error);
     throw error;
   }
 };

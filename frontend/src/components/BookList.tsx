@@ -10,18 +10,17 @@ function BookList({ selectedCategories }: { selectedCategories: string[] }) {
   const [sortedBooks, setSortedBooks] = useState<Book[]>([]);
   const [pageSize, setPageSize] = useState<number>(10);
   const [pageNum, setPageNum] = useState<number>(1);
-  const [totalItems, setTotalItems] = useState<number>(0);
   const [totalPages, setTotalPages] = useState<number>(0);
   const [sortAscending, setSortAscending] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    const loadProjects = async () => {
+    const loadBooks = async () => {
       try {
         setLoading(true);
         const data = await fetchBooks(pageSize, pageNum, selectedCategories);
-
+        console.log('API Response:', data);
         setBooks(data.books);
         setTotalPages(Math.ceil(data.totalNumBooks / pageSize));
       } catch (error) {
@@ -30,14 +29,16 @@ function BookList({ selectedCategories }: { selectedCategories: string[] }) {
         setLoading(false);
       }
     };
-    loadProjects();
+    loadBooks();
   }, [pageSize, pageNum, selectedCategories]);
 
-  if (loading) return <p>Loading Projects...</p>;
+  if (loading) return <p>Loading Books...</p>;
   if (error) return <p className="text-red-500">Error: {error}</p>;
 
   // this use effect is used to sort the books in the list
   useEffect(() => {
+    if (!books || books.length === 0) return; // No books to sort
+
     const sorted = [...books].sort((a, b) => {
       if (a.title < b.title) return sortAscending ? -1 : 1;
       if (a.title > b.title) return sortAscending ? 1 : -1;
@@ -45,24 +46,26 @@ function BookList({ selectedCategories }: { selectedCategories: string[] }) {
     });
     setSortedBooks(sorted);
   }, [books, sortAscending]);
-
+  // Determine which books to display
+  const displayBooks = sortedBooks;
   return (
     <>
-      {/* button used to sort the titles */}
       <button onClick={() => setSortAscending(!sortAscending)}>
         Sort by Title {sortAscending ? '↑' : '↓'}
       </button>
       <br />
       <br />
 
-      {/* cards for each book */}
-      {sortedBooks.map((b) => (
+      {displayBooks.map((b) => (
         <div id="bookCard" className="card" key={b.bookId}>
           <h3 className="card-title">{b.title}</h3>
           <div className="card-body">
             <ul className="list-unstyled">
               <li>
                 <strong>Publisher:</strong> {b.publisher}
+              </li>
+              <li>
+                <strong>Author:</strong> {b.author}
               </li>
               <li>
                 <strong>ISBN:</strong> {b.isbn}
@@ -92,12 +95,10 @@ function BookList({ selectedCategories }: { selectedCategories: string[] }) {
         </div>
       ))}
 
-      {/* previous button to go to the previous page */}
       <button disabled={pageNum === 1} onClick={() => setPageNum(pageNum - 1)}>
         Previous
       </button>
 
-      {/* this makes it so that the number of page buttons are dynamic */}
       {[...Array(totalPages)].map((_, i) => (
         <button
           key={i + 1}
@@ -108,7 +109,6 @@ function BookList({ selectedCategories }: { selectedCategories: string[] }) {
         </button>
       ))}
 
-      {/* next button to go to the next page */}
       <button
         disabled={pageNum === totalPages}
         onClick={() => setPageNum(pageNum + 1)}
@@ -118,7 +118,6 @@ function BookList({ selectedCategories }: { selectedCategories: string[] }) {
 
       <br />
 
-      {/* Where the user can decide how many records per page to display */}
       <label>How Many results per page?</label>
       <select
         value={pageSize}

@@ -28,7 +28,9 @@ if (app.Environment.IsDevelopment())
 }
 
 // implement the ad cors allowing connections from port 7000
-app.UseCors(options => options.WithOrigins("http://localhost:7000"));
+app.UseCors(options => options.WithOrigins("http://localhost:7000")
+.AllowAnyHeader()
+.AllowAnyMethod());
 
 app.UseHttpsRedirection();
 
