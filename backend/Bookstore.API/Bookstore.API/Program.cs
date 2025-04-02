@@ -20,7 +20,7 @@ builder.Services.AddCors(options => {
     options.AddPolicy("allowReactApp",
     policy =>
     {
-        policy.WithOrigins("https://kind-bay-0c01b231e.6.azurestaticapps.net")
+        policy.AllowAnyOrigin()
         .AllowAnyHeader()
         .AllowAnyMethod();
     });
