@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { Book } from '../types/Book';
 import { useNavigate } from 'react-router-dom';
 import { fetchBooks } from '../api/BooksApi';
+import Pagination from './Pagination';
 
 function BookList({ selectedCategories }: { selectedCategories: string[] }) {
   const navigate = useNavigate();
@@ -32,9 +33,6 @@ function BookList({ selectedCategories }: { selectedCategories: string[] }) {
     loadBooks();
   }, [pageSize, pageNum, selectedCategories]);
 
-  if (loading) return <p>Loading Books...</p>;
-  if (error) return <p className="text-red-500">Error: {error}</p>;
-
   // this use effect is used to sort the books in the list
   useEffect(() => {
     if (!books || books.length === 0) return; // No books to sort
@@ -48,11 +46,16 @@ function BookList({ selectedCategories }: { selectedCategories: string[] }) {
   }, [books, sortAscending]);
   // Determine which books to display
   const displayBooks = sortedBooks;
+
+  if (loading) return <p>Loading Books...</p>;
+  if (error) return <p className="text-red-500">Error: {error}</p>;
+
   return (
     <>
       <button onClick={() => setSortAscending(!sortAscending)}>
         Sort by Title {sortAscending ? '↑' : '↓'}
       </button>
+      <button onClick={() => navigate('/admin')}>Go to Admin Page</button>
       <br />
       <br />
 
@@ -94,42 +97,16 @@ function BookList({ selectedCategories }: { selectedCategories: string[] }) {
           </div>
         </div>
       ))}
-
-      <button disabled={pageNum === 1} onClick={() => setPageNum(pageNum - 1)}>
-        Previous
-      </button>
-
-      {[...Array(totalPages)].map((_, i) => (
-        <button
-          key={i + 1}
-          onClick={() => setPageNum(i + 1)}
-          disabled={pageNum === i + 1}
-        >
-          {i + 1}
-        </button>
-      ))}
-
-      <button
-        disabled={pageNum === totalPages}
-        onClick={() => setPageNum(pageNum + 1)}
-      >
-        Next
-      </button>
-
-      <br />
-
-      <label>How Many results per page?</label>
-      <select
-        value={pageSize}
-        onChange={(p) => {
-          setPageSize(Number(p.target.value));
+      <Pagination
+        currentPage={pageNum}
+        totalPages={totalPages}
+        pageSize={pageSize}
+        onPageChange={setPageNum}
+        onPageSizeChange={(newSize) => {
+          setPageSize(newSize);
           setPageNum(1);
         }}
-      >
-        <option value="5">5</option>
-        <option value="10">10</option>
-        <option value="20">20</option>
-      </select>
+      />
     </>
   );
 }

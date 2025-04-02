@@ -16,7 +16,15 @@ builder.Services.AddDbContext<BookDbContext>(options =>
     options.UseSqlite(builder.Configuration.GetConnectionString("BookConnection"));
 });
 
-builder.Services.AddCors();
+builder.Services.AddCors(options => {
+    options.AddPolicy("allowReactApp",
+    policy =>
+    {
+        policy.WithOrigins("http://localhost:7000")
+        .AllowAnyHeader()
+        .AllowAnyMethod();
+    });
+});
 
 var app = builder.Build();
 
@@ -28,9 +36,7 @@ if (app.Environment.IsDevelopment())
 }
 
 // implement the ad cors allowing connections from port 7000
-app.UseCors(options => options.WithOrigins("http://localhost:7000")
-.AllowAnyHeader()
-.AllowAnyMethod());
+app.UseCors("allowReactApp");
 
 app.UseHttpsRedirection();
 

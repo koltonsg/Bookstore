@@ -4,17 +4,19 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import BooksPage from './pages/BooksPage';
 import AddToCartPage from './pages/AddToCartPage';
 import CartPage from './pages/CartPage';
+import AdminPage from './pages/AdminPage';
 
 function App() {
   return (
     <>
-    {/* Paths to navigate through the pages */}
+      {/* Paths to navigate through the pages */}
       <CartProvider>
         <Router>
           <Routes>
             <Route path="/" element={<BooksPage />} />
             <Route path="/books" element={<BooksPage />} />
             <Route path="/cart" element={<CartPage />} />
+            <Route path="/admin" element={<AdminPage />} />
             <Route
               path="/addToCart/:title/:bookId/:price"
               element={<AddToCartPage />}
