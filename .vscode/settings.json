@@ -1,0 +1,4 @@
+{
+  "appService.defaultWebAppToDeploy": "undefined/subscriptions/b02c9180-5bc7-49fc-b7de-ecb4348d0066/resourceGroups/appsvc_windows_centralus/providers/Microsoft.Web/sites/Bookstore-Gustin-Backend",
+  "appService.deploySubpath": "backend\\Bookstore.API\\Bookstore.API\\publish"
+}

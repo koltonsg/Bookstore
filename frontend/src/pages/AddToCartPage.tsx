@@ -3,7 +3,6 @@ import WelcomeBand from '../components/WelcomeBand';
 import { useCart } from '../context/CartContext';
 import { CartItem } from '../types/CartItem';
 import { useState } from 'react';
-import { Toast } from 'bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/js/bootstrap.bundle.min.js';
 
@@ -12,7 +11,6 @@ function AddToCartPage() {
   const { title, bookId, price } = useParams();
   const { addToCart } = useCart();
   const [quantity, setQuantity] = useState<number>(1);
-  const [toastMessage, setToastMessage] = useState<string | null>(null);
 
   const handleAddToCart = () => {
     const newItem: CartItem = {
@@ -24,9 +22,7 @@ function AddToCartPage() {
     };
 
     addToCart(newItem);
-    const toastMessage = `${newItem.title} added to cart!`;
-    localStorage.setItem('toastMessage', toastMessage);
-    navigate('/cart'); 
+    navigate('/cart');
   };
 
   return (

@@ -3,6 +3,7 @@ import { CartItem } from '../types/CartItem';
 
 interface CartContextType {
   cart: CartItem[];
+  total: number;
   addToCart: (item: CartItem) => void;
   removeFromCart: (bookId: number) => void;
   clearCart: () => void;
@@ -41,11 +42,12 @@ export const CartProvider = ({ children }: { children: ReactNode }) => {
 
   const clearCart = () => {
     setCart(() => []);
+    setTotal(() => 0);
   };
 
   return (
     <CartContext.Provider
-      value={{ cart, addToCart, removeFromCart, clearCart }}
+      value={{ cart, total, addToCart, removeFromCart, clearCart }}
     >
       {children}
     </CartContext.Provider>
